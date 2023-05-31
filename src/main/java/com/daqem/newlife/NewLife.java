@@ -17,7 +17,7 @@ import org.apache.logging.log4j.Logger;
 
 public class NewLife implements ModInitializer {
 
-    public static final String MOD_ID = "afterlife";
+    public static final String MOD_ID = "newlife";
     public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
     public static final int MAX_LIVES = 6;
     public static final int MAX_ROLLS = 3;
@@ -92,10 +92,10 @@ public class NewLife implements ModInitializer {
 
     private int setLives(ServerCommandSource source, PlayerEntity target, int lives) {
 
-        if (target instanceof NewLifePlayerEntity afterlifePlayer) {
+        if (target instanceof NewLifePlayerEntity newLifePlayer) {
             String message = "Set " + target.getName().getString() + "s lives to " + lives;
             lives = lives >= 0 && lives <= NewLife.MAX_LIVES - 1 ? NewLife.MAX_LIVES - lives : 0;
-            afterlifePlayer.setLives(lives);
+            newLifePlayer.setLives(lives);
 
 
             if (source.getEntity() instanceof PlayerEntity sender) sender.sendMessage(Text.of(message), false);
@@ -107,8 +107,8 @@ public class NewLife implements ModInitializer {
 
     private int getLives(ServerCommandSource source, PlayerEntity target) {
 
-        if (target instanceof NewLifePlayerEntity afterlifePlayer) {
-            int lives = afterlifePlayer.getLives();
+        if (target instanceof NewLifePlayerEntity newLifePlayer) {
+            int lives = newLifePlayer.getLives();
             lives = lives >= 0 && lives <= NewLife.MAX_LIVES - 1 ? NewLife.MAX_LIVES - lives : 0;
             String message = target.getName().getString() + " has " + lives + " lives left.";
 

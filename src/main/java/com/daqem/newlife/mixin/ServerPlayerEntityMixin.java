@@ -124,29 +124,29 @@ public abstract class ServerPlayerEntityMixin extends PlayerEntity implements Ne
 
     @Inject(at = @At("TAIL"), method = "copyFrom(Lnet/minecraft/server/network/ServerPlayerEntity;Z)V")
     public void copyFromMixin(ServerPlayerEntity oldPlayer, boolean alive, CallbackInfo info) {
-        NewLifePlayerEntity afterlifePlayer = (NewLifePlayerEntity)oldPlayer;
-        this.lives = afterlifePlayer.getLives();
-        this.origins = afterlifePlayer.getOrigins();
-        this.died = afterlifePlayer.getDied();
-        this.rerolls = afterlifePlayer.getRerolls();
+        NewLifePlayerEntity newLifePlayer = (NewLifePlayerEntity)oldPlayer;
+        this.lives = newLifePlayer.getLives();
+        this.origins = newLifePlayer.getOrigins();
+        this.died = newLifePlayer.getDied();
+        this.rerolls = newLifePlayer.getRerolls();
     }
 
     @Inject(at = @At("TAIL"), method = "writeCustomDataToNbt(Lnet/minecraft/nbt/NbtCompound;)V")
     public void writeCustomDataToNbtMixin(NbtCompound nbt, CallbackInfo info) {
-        nbt.putInt("AfterlifeLives", this.lives);
-        nbt.putInt("AfterlifeRerolls", this.rerolls);
+        nbt.putInt("NewLifeLives", this.lives);
+        nbt.putInt("NewLifeRerolls", this.rerolls);
     }
 
     @Inject(at = @At("TAIL"), method = "readCustomDataFromNbt(Lnet/minecraft/nbt/NbtCompound;)V")
     public void readCustomDataFromNbtMixin(NbtCompound nbt, CallbackInfo info) {
-        this.lives = nbt.getInt("AfterlifeLives");
-        this.rerolls = nbt.getInt("AfterlifeRerolls");
+        this.lives = nbt.getInt("NewLifeLives");
+        this.rerolls = nbt.getInt("NewLifeRerolls");
     }
 
     @Inject(at = @At(value = "TAIL"), method = "onDeath")
     private  void onPlayerDeath(DamageSource source, CallbackInfo info) {
-        NewLifePlayerEntity afterlifePlayer = this;
-        afterlifePlayer.setLives(afterlifePlayer.getLives() + 1);
+        NewLifePlayerEntity newLifePlayer = this;
+        newLifePlayer.setLives(newLifePlayer.getLives() + 1);
         died = true;
     }
 

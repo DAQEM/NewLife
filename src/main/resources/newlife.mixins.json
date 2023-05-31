@@ -4,6 +4,7 @@
   "package": "com.daqem.newlife.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
+    "ServerPlayerEntityMixin"
   ],
   "client": [
   ],

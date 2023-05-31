@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "id": "new_life",
+  "id": "newlife",
   "version": "${version}",
   "name": "newlife",
   "description": "",
@@ -12,9 +12,6 @@
   "icon": "assets/newlife/icon.png",
   "environment": "*",
   "entrypoints": {
-    "client": [
-      "com.daqem.newlife.client.NewLifeClient"
-    ],
     "main": [
       "com.daqem.newlife.NewLife"
     ]
@@ -23,8 +20,9 @@
     "newlife.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=${loader_version}",
+    "fabricloader": ">=0.14.21",
     "fabric": "*",
-    "minecraft": "${minecraft_version}"
+    "minecraft": "1.19.2",
+    "origins": ">=1.7.1"
   }
 }
